@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waifu Image Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Waifu Image Search</h1>
+    
+    <h3>Formulario de Búsqueda</h3>
+    <form method="POST">
+        <label for="tags">Buscar por tags (separados por coma):</label>
+        <input type="text" name="tags" id="tags" placeholder="Ejemplo: waifu, maid">
+        <button type="submit">Buscar</button>
+    </form>
+    
+    {% if image %}
+        <div class="image-container">
+            <p>Imagen:</p>
+            <img src="{{ image.url }}" alt="Imagen Waifu" onerror="this.onerror=null;this.src='/static/images/placeholder.png';" />
+            <h2>Tags asociados:</h2>
+            <ul>
+                {% for tag in tags %}
+                    <li>{{ tag }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>{{ error_message or "No se encontró ninguna imagen." }}</p>
+    {% endif %}
+</body>
+</html>
