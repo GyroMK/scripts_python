@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Imágenes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Buscador de Imágenes</h1>
+    <form method="post">
+        <input type="text" name="tag" placeholder="Introduce un tag">
+        <button type="submit">Buscar</button>
+    </form>
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+    <div class="image-container">
+        {% for img in images %}
+            <div class="image-item">
+                <a href="{{ img.link }}" target="_blank">
+                    <img src="{{ img.image }}" alt="Imagen">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
